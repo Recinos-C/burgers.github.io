@@ -1,0 +1,46 @@
+body{
+  background-image: url("/Burger/public/assets/burger-4145977_1920.jpg");
+  height:100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+
+li {
+    padding: 5px;
+    margin: 5px;
+    background: #faebd7;
+  }
+  
+  .label {
+    font-weight: bold;
+  }
+  
+  .create-update-form {
+    padding: 5px;
+    margin: 5px;
+    background: aqua;
+  }
+
+  .Borger-section {
+    float: left;
+    color: white;
+    text-align: left;
+    margin-bottom: 5px;
+    background-color: #faebd7;
+  }
+
+  .eat-area{
+    float: right;
+    color: white;
+    text-align: left;
+    margin-bottom: 5px;
+    background-color: #faebd7;
+  }
+  
+  .form-group {
+    margin-bottom: 5px;
+  }
+  
