@@ -5,16 +5,14 @@
 // function that listens and calls to have burger submitted
 
 $(function () {
-    $(".change-devoured").on("click", function (event) {
-        var id = $(this).data("id");
-        var newdevoured = $(this).data("newdevour");
-        var newDevouredstate = {
-            devoured: 1
-        }
-        $.ajax("/api/burger/" + id, {
+    $(".change-devoured").on("submit", function (event) {
+        event.preventDefault();
+        var id = $(this).children("id").val();
+        // var newDevoured = $(this).data("newdevour");
+        $.ajax({
             type: "PUT",
-            data: newDevouredstate
-        }).then(function () {
+            url: "/burgers/" + id
+        }).then(function (data) {
             location.reload();
         })
 
@@ -22,20 +20,20 @@ $(function () {
 
 
     });
+   // $(".create-form").on("click", function(){
+    //     event.preventDefault();
+    //     var newBorger = {
+    //         burger_name: $("#ca").val().trim(),
+    //     };
 
-    $(".create-form").on("submit", function(){
-        event.preventDefault();
-        var newBorger = {
-            burger_name: $("#devoured").val().trim(),
-            devoured: 0
-        };
-
-        $.ajax("/api/burger", {
-            type: "POST",
-            data: newBorger
-        }).then(function () {
-            location.reload();
-        })
-    })
+    //     $.ajax("/api/burger", {
+    //         method: "POST",
+    //         data: newBorger
+    //     }).then(function (data) {
+    //         console.log(data)
+    //         location.reload();
+    //     })
+    // })
+ 
     
 })

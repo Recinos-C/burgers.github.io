@@ -2,52 +2,46 @@
 
 
 <div class="Borger-section">
-<h2>Burgers</h2>
+    <h2>Burgers</h2>
+    <li>
+        {{#each burger}}
+        {{#unless this.devoured}}
+        {{!-- {{> burgers/burger-block devoured=true}} --}}
+         <p>{{this.id}}.{{burger_name}}</p>
+        <button class="change-devoured" data-id="{{this.id}}">
+            {{/unless}}
+            {{/each}}
+    </li>
 
-<ul>
-    {{#each burgers}}
-    {{{#unless devoured}}}
-    {{> burgers/burger-block devoured=true}}
-    {{/unless}}
-    {{/each}}
-</ul>
-
-<li>
-    {{burger_name}}
-
-    <button class="change-devoured" data-id="{{id}}" data-newdevour="{{devoured}}">
-        {{#if devoured}}Has eaten{{else}}Has not Eaten{{/if}}
-    </button>
-</li>
+    <h2>Burgers Eaten</h2>
+    <li>
+        {{#each burger}}
+        {{#if this.devoured}}
+        <p>{{this.id}}.{{burger_name}}</p>
+        {{/if}}
+        {{/each}}
+    </li>
+ 
 </div>
 
 
 <div class="eat-area">
-<h2>Burgers Eaten</h2>
-
-<ul>
-    {{#each burgers}}
-    {{#if devoured}}
-    {{>burgers/burger-block devoured=false}}
-    {{/if}}
-    {{/each}}
-</ul>
-
-<h2>Add another one</h2>
-<form class="create-form">
-    <div class="form-group">
-        <label for="devoured">Has you eaten it?</label>
-        <input type="radio" id="ca" name="burger_name">
-    </div>
+    <h2>Burgers</h2>
+    <h2>Add another one</h2>
+    <form class="create-form">
+        <div class="form-group">
+            <label for="devoured">What is the burger name?</label>
+            <input id="burger_name">
+        </div>
 
 
-    <div class="form-group">
-        <input type="radio" name="devoured" value="1" checked> Devoured!
-        <br>
-        <input type="radio" name="devoured" value="0">Not eaten yet
-    </div>
+        <div class="form-group">
+            <input type="radio" name="devoured" value="1" checked> Devoured!
+            <br>
+            <input type="radio" name="devoured" value="0">Not eaten yet
+        </div>
 
-    <button type="submit">Add Borger</button>
-</form>
+        <button type="submit">Add Borger</button>
+    </form>
 
 </div>

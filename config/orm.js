@@ -12,15 +12,10 @@ function qValue(num) {
 
 function sql(ob) {
     var arr = [];
-    for (var key in ob) {
-        var value = ob[key];
-        if (Object.hasOwnProperty.call(ob, key)) {
-            if (typeof value === "string" && value.indexOf(" ") >= 0) {
-                value = "'" + value + "'";
-            }
-            arr.push(key + "=" + value);
-        }
+    for (var key in ob) {   
+            arr.push(key + "=" + value);  
     }
+    return arr.toString();
 }
 
 
@@ -32,7 +27,9 @@ var orm = {
             cb(result);
         });
     },
-    insertOne: function (burgers, col, val, cb) {
+    // all notations must match when exporting items through MCV 
+    // note all files are interwined and use the same names!
+    create: function (burgers, col, val, cb) {
         var query = "INSERT INTO " + burgers;
 
         queryString += " (";
