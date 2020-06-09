@@ -10,18 +10,10 @@ function qValue(num) {
     return arr.toString();
 }
 
-function sql(ob) {
-    var arr = [];
-    for (var key in ob) {   
-            arr.push(key + "=" + value);  
-    }
-    return arr.toString();
-}
-
 
 var orm = {
-    selectAll: function (burgers, cb) {
-        var query = "SELECT * FROM " + burgers + ";";
+    all: function (burgersInput, cb) {
+        var query = "SELECT * FROM " + burgersInput + ";";
         connection.query(query, function (err, result) {
             if (err) throw err;
             cb(result);
@@ -29,23 +21,16 @@ var orm = {
     },
     // all notations must match when exporting items through MCV 
     // note all files are interwined and use the same names!
-    create: function (burgers, col, val, cb) {
-        var query = "INSERT INTO " + burgers;
-
-        queryString += " (";
-        queryString += col.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += qValue(val.length);
-        queryString += ") ";
+    create: function (burgersTable, col, val, cb) {
+        var query = "INSERT INTO " + burgersTable + " (" + col.toString() + ") " + "VALUES ("+ qValue(val.length) + ") "
         connection.query(query, val, function (err, result) {
             if (err) throw err;
             cb(result)
         })
     },
-    updateOne: function (burgers, obColVal, condition, cb) {
-        var query = "UPDATE " + burgers + "SET " + sql(obColVal) + " WHERE " + condition;
-        connection.query(query, val, function (err, result) {
+    update: function (burgersTable, obColVal, condition, cb) {
+        var query = "UPDATE " + burgersTable + "SET " + obColVal + " WHERE " + condition;
+        connection.query(query, function (err, result) {
             if (err) throw err;
             cb(result)
         })
